@@ -4,12 +4,12 @@
     class="transition-transform hover:-translate-y-1"
   >
     <UCard
-      :ui="{ body: `!p-4 rounded-lg` }"
+      :ui="{ body: `!p-0 overflow-hidden rounded-lg` }"
       variant="subtle"
       :style="typeClass"
     >
-      <div class="flex justify-between">
-        <div class="flex flex-col">
+      <div class="flex justify-between relative">
+        <div class="flex flex-col pl-4 py-4">
           <h3 class="font-semibold capitalize">{{ pokemonList.name }}</h3>
           <p class="text-sm">#{{ pokemonList.id.padStart(4, "0") }}</p>
           <span class="text-xs font-light italic">
@@ -28,10 +28,9 @@
         <NuxtImg
           :src="pokemonList.official_artwork"
           :alt="pokemonList.name"
-          width="80"
-          height="80"
-          class="relative z-10 aspect-square"
+          class="absolute right-2 bottom-2 z-20 aspect-square object-cover h-17 w-17 lg:w-20 lg:h-20"
         />
+        <Pokeball />
       </div>
     </UCard>
   </NuxtLink>
@@ -39,6 +38,7 @@
 
 <script setup lang="ts">
 import type { PokemonList } from "~/server/types/pokemon-list";
+import { pokemonTypeBackgrounds } from "~/utils/get-pokemon-type-color";
 
 const props = defineProps<{
   pokemonList: PokemonList;
@@ -47,27 +47,6 @@ const props = defineProps<{
 const pokemonTypes = computed(() =>
   props.pokemonList.types.replace("[", "").replace("]", "").split(" "),
 );
-
-const pokemonTypeBackgrounds: { [key: string]: string } = {
-  normal: "bg-normal",
-  fire: "bg-fire",
-  water: "bg-water",
-  grass: "bg-grass",
-  electric: "bg-electric",
-  ice: "bg-ice",
-  fighting: "bg-fighting",
-  poison: "bg-poison",
-  ground: "bg-ground",
-  flying: "bg-flying",
-  psychic: "bg-psychic",
-  bug: "bg-bug",
-  rock: "bg-rock",
-  ghost: "bg-ghost",
-  dragon: "bg-dragon",
-  steel: "bg-steel",
-  dark: "bg-dark",
-  fairy: "bg-fairy",
-};
 
 const typeClass = computed(() => {
   const types = pokemonTypes.value;

@@ -5,7 +5,7 @@ export default defineAppConfig({
       neutral: "slate",
     },
     container: {
-      base: "w-full max-w-(--ui-container) mx-auto",
+      base: "w-full max-w-(--ui-container) mx-auto p-0",
     },
   },
 });
