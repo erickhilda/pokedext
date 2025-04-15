@@ -1,43 +1,36 @@
 <template>
   <NuxtLink
     :to="`/pokemon/${pokemonList.name}`"
-    class="transition-transform hover:scale-105"
+    class="transition-transform hover:-translate-y-1"
   >
     <UCard
-      :ui="{ body: { padding: 'p-4' } }"
-      class="pokemon-card"
+      :ui="{ body: `!p-4 rounded-lg` }"
+      variant="subtle"
       :style="typeClass"
     >
       <div class="flex justify-between">
         <div class="flex flex-col">
-          <h3 class="font-semibold text-white">{{ pokemonList.name }}</h3>
-          <h3 class="font-semibold text-white">
-            #{{ pokemonList.id.padStart(4, "0") }}
-          </h3>
-          <div class="flex">
+          <h3 class="font-semibold capitalize">{{ pokemonList.name }}</h3>
+          <p class="text-sm">#{{ pokemonList.id.padStart(4, "0") }}</p>
+          <span class="text-xs font-light italic">
+            {{ pokemonTypes.join(", ") }}
+          </span>
+          <div class="flex mt-1">
             <span
-              v-for="t in pokemonTypes"
-              :key="`${pokemonList.name}-tt-${t}`"
-              class="text-xs font-light italic"
-            >
-              {{ t }},
-            </span>
-          </div>
-          <div class="flex">
-            <span
-              v-for="t in pokemonTypes"
+              v-for="(t, idx) in pokemonTypes"
               :key="`${pokemonList.name}-tc-${t}`"
-              class="inline-block rounded-full h-4 w-4 border"
-              :style="{ background: typeColors[t] }"
+              class="inline-block rounded-full border"
+              :class="{ 'w-4 h-4': idx === 0, 'w-3 h-3 mt-1 -ml-2': idx === 1 }"
+              :style="{ background: `var(--color-${t})` }"
             />
           </div>
         </div>
         <NuxtImg
           :src="pokemonList.official_artwork"
           :alt="pokemonList.name"
-          width="96"
-          height="96"
-          class="relative z-10"
+          width="80"
+          height="80"
+          class="relative z-10 aspect-square"
         />
       </div>
     </UCard>
@@ -46,7 +39,6 @@
 
 <script setup lang="ts">
 import type { PokemonList } from "~/server/types/pokemon-list";
-import { typeColors } from "~/utils/get-pokemon-type-color";
 
 const props = defineProps<{
   pokemonList: PokemonList;
@@ -56,26 +48,39 @@ const pokemonTypes = computed(() =>
   props.pokemonList.types.replace("[", "").replace("]", "").split(" "),
 );
 
+const pokemonTypeBackgrounds: { [key: string]: string } = {
+  normal: "bg-normal",
+  fire: "bg-fire",
+  water: "bg-water",
+  grass: "bg-grass",
+  electric: "bg-electric",
+  ice: "bg-ice",
+  fighting: "bg-fighting",
+  poison: "bg-poison",
+  ground: "bg-ground",
+  flying: "bg-flying",
+  psychic: "bg-psychic",
+  bug: "bg-bug",
+  rock: "bg-rock",
+  ghost: "bg-ghost",
+  dragon: "bg-dragon",
+  steel: "bg-steel",
+  dark: "bg-dark",
+  fairy: "bg-fairy",
+};
+
 const typeClass = computed(() => {
-  if (pokemonTypes.value.length === 1) {
-    return { backgroundColor: typeColors[pokemonTypes.value[0]] };
-  } else if (pokemonTypes.value.length > 1) {
-    const gradientColors = pokemonTypes.value.map((c) => typeColors[c]);
+  const types = pokemonTypes.value;
+  if (types.length === 1) {
     return {
-      backgroundImage: `radial-gradient(560px circle at 90% 110%, rgba(var(--el2) / .6), transparent 40%) ${gradientColors.join(", ")})`,
+      backgroundImage: `linear-gradient(150deg, var(--color-${types[0]}), transparent)`,
+    };
+  } else if (pokemonTypes.value.length > 1) {
+    return {
+      backgroundImage: `linear-gradient(150deg, var(--color-${types[0]}), var(--color-${types[1]}))`,
     };
   } else {
     return {}; // Or a default background class like 'bg-gray-100'
   }
 });
 </script>
-
-<style scoped>
-.pokemon-card {
-  transition: transform 0.2s;
-}
-
-.pokemon-card:hover {
-  transform: translateY(-4px);
-}
-</style>

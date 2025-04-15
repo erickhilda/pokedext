@@ -3,7 +3,7 @@
     {{ error }}
   </div>
   <div v-else>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 debug">
+    <div class="grid grid-cols-2 gap-3">
       <PokemonCard
         v-for="pokemon in pokemons"
         :key="pokemon.name"

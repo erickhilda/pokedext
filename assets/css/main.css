@@ -1,8 +1,31 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/*
+* dynamic class issue with tailwind
+* https://github.com/nuxt/nuxt/issues/19013
+*/
 @theme {
-  --font-sans: "DM Serif Text", sans-serif;
+  --font-sans: sans-serif;
+
+  --color-bug: #8fc23f;
+  --color-dark: #5a5366;
+  --color-dragon: #176cc5;
+  --color-electric: #f4d23c;
+  --color-fairy: #ed8ce5;
+  --color-fighting: #ce406a;
+  --color-fire: #ff9c54;
+  --color-flying: #8fa8dd;
+  --color-ghost: #5369ac;
+  --color-grass: #60b953;
+  --color-ground: #d97644;
+  --color-ice: #73cec0;
+  --color-normal: #9099a1;
+  --color-poison: #a566c7;
+  --color-psychic: #f86d74;
+  --color-rock: #c7b68b;
+  --color-steel: #53879c;
+  --color-water: #4e90d6;
 }
 
 .debug {
