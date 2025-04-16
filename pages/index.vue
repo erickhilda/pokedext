@@ -3,11 +3,11 @@ const searchQuery = ref("");
 </script>
 
 <template>
-  <div class="px-6">
+  <div class="overflow-hidden" :style="{ maxHeight: 'calc(100vh - 84px)' }">
     <Suspense>
       <PokemonList :search-query="searchQuery" />
       <template #fallback>
-        <div class="grid grid-cols-2 gap-3">
+        <div class="px-6 pb-6 grid grid-cols-2 gap-3">
           <USkeleton
             v-for="el in 20"
             :key="`skeleton-item-${el}`"

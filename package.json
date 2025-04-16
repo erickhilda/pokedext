@@ -7,6 +7,7 @@
     "@nuxt/image": "1.10.0",
     "@nuxt/test-utils": "3.17.2",
     "@nuxt/ui": "3.0.2",
+    "@vueuse/core": "^13.1.0",
     "csv-parser": "^3.2.0",
     "eslint": "^9.0.0",
     "nuxt": "^3.16.2",

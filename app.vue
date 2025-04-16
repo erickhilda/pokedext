@@ -4,10 +4,8 @@
   >
     <header class="p-6">
       <div class="flex justify-between items-center">
-        <h1 v-if="route.path === '/pokemon'" class="text-3xl font-bold">
-          Pokédex
-        </h1>
-        <NuxtLink v-else to="/pokemon">
+        <h1 v-if="route.path === '/'" class="text-3xl font-bold">Pokédex</h1>
+        <NuxtLink v-else to="/">
           <UButton icon="i-heroicons-chevron-left" variant="ghost" size="xl" />
         </NuxtLink>
         <UButton
