@@ -2,6 +2,7 @@
 import type { Pokemon } from "~/types/pokemon";
 import type { TabsItem } from "@nuxt/ui";
 import AboutTab from "~/components/about-tab.vue";
+import BaseStatsTab from "~/components/base-stats-tab.vue";
 
 const route = useRoute();
 const baseUrl = "https://pokeapi.co/api/v2";
@@ -9,7 +10,6 @@ const baseUrl = "https://pokeapi.co/api/v2";
 const items = ref<TabsItem[]>([
   {
     label: "About",
-    content: AboutTab,
   },
   {
     label: "Base Stats",
@@ -95,9 +95,14 @@ const generateBackgroundColor = computed(() => {
             class="w-full"
           >
             <template #content="{ item }">
-              <component
-                :is="item.content"
+              <AboutTab
+                v-if="item.label === 'About'"
                 :pokemon="pokemon"
+                :name="pokemon?.name ?? ''"
+              />
+              <BaseStatsTab
+                v-if="item.label === 'Base Stats'"
+                :stats="pokemon?.stats ?? []"
                 :name="pokemon?.name ?? ''"
               />
             </template>
