@@ -2,7 +2,7 @@
   <div
     class="flex flex-col min-h-screen max-w-lg bg-slate-100 dark:bg-slate-700 mx-auto"
   >
-    <header class="p-6 backdrop-blur-sm shadow-lg">
+    <header class="p-6" :class="{ 'shadow-lg': route.path === '/' }">
       <div class="flex justify-between items-center">
         <h1 v-if="route.path === '/'" class="text-3xl font-bold">Pokédex</h1>
         <NuxtLink v-else to="/">
