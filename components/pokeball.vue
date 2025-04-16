@@ -1,6 +1,6 @@
 <template>
   <span
-    class="absolute -right-8 -bottom-8 z-10 aspect-square object-cover h-30 w-30 text-slate-50/40 -rotate-30"
+    class="absolute -right-4 -bottom-6 z-10 aspect-square object-cover h-30 w-30 text-slate-50/20 -rotate-30"
   >
     <svg
       id="Layer_1"

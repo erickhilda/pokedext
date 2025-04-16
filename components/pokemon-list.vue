@@ -12,6 +12,7 @@ const {
 } = await useFetch<NamedAPIResourceList>("https://pokeapi.co/api/v2/pokemon", {
   lazy: true,
   query: { limit, offset },
+  key: `pokemon-l${limit.value}-o${offset.value}`,
 });
 
 if (error.value) {
@@ -42,7 +43,7 @@ useInfiniteScroll(
   <div
     v-else
     ref="el-list"
-    class="px-6 pb-6 grid grid-cols-2 gap-3 debug overflow-y-scroll"
+    class="p-6 grid grid-cols-2 gap-3 overflow-y-scroll"
     :style="{ maxHeight: 'calc(100vh - 84px)' }"
   >
     <PokemonCard

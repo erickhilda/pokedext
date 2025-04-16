@@ -81,7 +81,7 @@ const generateBackgroundColor = computed(() => {
             />
           </div>
 
-          <Pokeball class="w-50 h-50 rotate-0 -bottom-1" />
+          <Pokeball class="w-60 h-60 rotate-12 -bottom-1 -right-8" />
         </div>
 
         <div

@@ -50,12 +50,8 @@ const genderRatio = computed(() => {
       <div class="grid grid-cols-2 gap-4">
         <div class="text-gray-500 dark:text-gray-200">Gender</div>
         <div v-if="genderRatio" class="text-gray-700 dark:text-gray-500">
-          <span class="text-blue-500 mr-2"
-            >♂ {{ (genderRatio.male / 8) * 100 }}%</span
-          >
-          <span class="text-pink-500"
-            >♀ {{ (genderRatio.female / 8) * 100 }}%</span
-          >
+          <span class="text-blue-500 mr-2">♂ {{ genderRatio.male }}%</span>
+          <span class="text-pink-500">♀ {{ genderRatio.female }}%</span>
         </div>
 
         <div class="text-gray-500 dark:text-gray-200">Egg Groups</div>
