@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { PokemonStat } from "~/types/pokemon";
+import { pokemonTypeBackgrounds } from "~/utils/get-pokemon-type-color";
 
-const props = defineProps<{ stats: PokemonStat[]; name: string }>();
+const props = defineProps<{
+  stats: PokemonStat[];
+  name: string;
+  type: string;
+}>();
 const baseStats = computed(() => props.stats);
 
 const baseStatsText = {
@@ -27,6 +32,8 @@ const total = computed(() => {
 
   return t;
 });
+
+const statColor = computed(() => pokemonTypeBackgrounds[props.type]);
 </script>
 
 <template>
@@ -45,9 +52,9 @@ const total = computed(() => {
         >
           <div
             class="h-full rounded-full"
+            :class="statColor"
             :style="{
               width: `${getPercentage(stat.base_stat)}%`,
-              backgroundColor: 'var(--color-fire)',
             }"
           />
         </div>

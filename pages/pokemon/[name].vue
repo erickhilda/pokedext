@@ -3,6 +3,7 @@ import type { Pokemon } from "~/types/pokemon";
 import type { TabsItem } from "@nuxt/ui";
 import AboutTab from "~/components/about-tab.vue";
 import BaseStatsTab from "~/components/base-stats-tab.vue";
+import MovesTab from "~/components/moves-tab.vue";
 
 const route = useRoute();
 const baseUrl = "https://pokeapi.co/api/v2";
@@ -104,6 +105,11 @@ const generateBackgroundColor = computed(() => {
                 v-if="item.label === 'Base Stats'"
                 :stats="pokemon?.stats ?? []"
                 :name="pokemon?.name ?? ''"
+                :type="pokemon?.types[0].type.name"
+              />
+              <MovesTab
+                v-if="item.label === 'Moves'"
+                :moves="pokemon?.moves ?? []"
               />
             </template>
           </UTabs>
