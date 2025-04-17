@@ -12,4 +12,7 @@ export default defineNuxtConfig({
     "@nuxt/test-utils",
   ],
   css: ["~/assets/css/main.css"],
+  image: {
+    domains: ["raw.githubusercontent.com"],
+  },
 });

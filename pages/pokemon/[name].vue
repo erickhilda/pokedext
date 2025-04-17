@@ -60,7 +60,7 @@ const generateBackgroundColor = computed(() => {
                 <NuxtImg
                   v-for="t in pokemon?.types"
                   :key="`${pokemon?.name}-timg-${t.type.name}`"
-                  :src="`/icon/${t.type.name}.svg`"
+                  :src="`https://raw.githubusercontent.com/erickhilda/pokedext/refs/heads/main/public/icons/${t.type.name}.svg`"
                   :alt="t.type.name"
                   height="24"
                   width="24"
