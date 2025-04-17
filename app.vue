@@ -10,6 +10,7 @@
         </NuxtLink>
         <UButton
           color="primary"
+          variant="subtle"
           size="xl"
           :icon="
             colorMode.value === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'

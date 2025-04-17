@@ -63,6 +63,7 @@ const columns: TableColumn<GroupedMoves[string][number]>[] = [
   {
     accessorKey: "learn_method",
     header: "Learn Method",
+    cell: ({ row }) => toTitleCase(row.getValue("learn_method"), "-"),
   },
 ];
 </script>

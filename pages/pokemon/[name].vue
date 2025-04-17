@@ -4,6 +4,7 @@ import type { TabsItem } from "@nuxt/ui";
 import AboutTab from "~/components/about-tab.vue";
 import BaseStatsTab from "~/components/base-stats-tab.vue";
 import MovesTab from "~/components/moves-tab.vue";
+import EvolutionTab from "~/components/evolution-tab.vue";
 
 const route = useRoute();
 const baseUrl = "https://pokeapi.co/api/v2";
@@ -74,7 +75,11 @@ const generateBackgroundColor = computed(() => {
 
           <div class="flex justify-center mt-4">
             <NuxtImg
-              :src="pokemon?.sprites.other['official-artwork']['front_default']"
+              :src="
+                pokemon?.sprites.other?.['official-artwork']?.[
+                  'front_default'
+                ] ?? ''
+              "
               alt="Bulbasaur"
               width="{200}"
               height="{200}"
@@ -86,7 +91,7 @@ const generateBackgroundColor = computed(() => {
         </div>
 
         <div
-          class="bg-white dark:bg-slate-800 rounded-t-3xl py-4 px-6 relative z-30"
+          class="bg-white dark:bg-slate-800 rounded-t-3xl py-4 px-6 relative z-30 min-h-[50vh]"
         >
           <UTabs
             v-model="activeTab"
@@ -105,11 +110,15 @@ const generateBackgroundColor = computed(() => {
                 v-if="item.label === 'Base Stats'"
                 :stats="pokemon?.stats ?? []"
                 :name="pokemon?.name ?? ''"
-                :type="pokemon?.types[0].type.name"
+                :type="pokemon?.types[0].type.name ?? 'normal'"
               />
               <MovesTab
                 v-if="item.label === 'Moves'"
                 :moves="pokemon?.moves ?? []"
+              />
+              <EvolutionTab
+                v-if="item.label === 'Evolution'"
+                :name="pokemon?.name ?? ''"
               />
             </template>
           </UTabs>

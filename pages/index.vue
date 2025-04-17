@@ -1,11 +1,7 @@
-<script lang="ts" setup>
-const searchQuery = ref("");
-</script>
-
 <template>
   <div class="overflow-hidden" :style="{ maxHeight: 'calc(100vh - 84px)' }">
     <Suspense>
-      <PokemonList :search-query="searchQuery" />
+      <PokemonList />
       <template #fallback>
         <div class="px-6 pb-6 grid grid-cols-2 gap-3">
           <USkeleton
