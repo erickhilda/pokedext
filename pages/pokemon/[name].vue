@@ -125,7 +125,14 @@ const generateBackgroundColor = computed(() => {
         </div>
       </div>
       <template #fallback>
-        <div>loading</div>
+        <div class="w-full overflow-hidden">
+          <div class="flex pt-4 flex-col mx-6 relative over h-[40vh]">
+            <Pokeball class="w-60 h-60 rotate-12 -bottom-1 -right-8" />
+          </div>
+          <div
+            class="rounded-t-3xl rounded-b-none min-h-[50vh] bg-white dark:bg-slate-800 relative z-20"
+          />
+        </div>
       </template>
     </Suspense>
   </div>
